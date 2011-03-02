@@ -1217,9 +1217,24 @@ bool CUser::IsChan(const CString& sChan) const {
 	return GetChanPrefixes().find(sChan[0]) != CString::npos;
 }
 
-void CUser::SetNick(const CString& s) { m_sNick = s; }
-void CUser::SetAltNick(const CString& s) { m_sAltNick = s; }
-void CUser::SetIdent(const CString& s) { m_sIdent = s; }
+bool CUser::SetNick(const CString& s, bool bTakeToken = true) {
+	if (!bTakeToken && s.find(" ") == CString::npos)
+		return false;
+	m_sNick = s.Token(0);
+	return true;
+}
+bool CUser::SetAltNick(const CString& s, bool bTakeToken = true) {
+	if (!bTakeToken && s.find(" ") == CString::npos)
+		return false;
+	m_sAltNick = s.Token(0);
+	return true;
+}
+bool CUser::SetIdent(const CString& s, bool bTakeToken = true) {
+	if (!bTakeToken && s.find(" ") == CString::npos)
+		return false;
+	m_sIdent = s.Token(0);
+	return true;
+}
 void CUser::SetRealName(const CString& s) { m_sRealName = s; }
 void CUser::SetBindHost(const CString& s) { m_sBindHost = s; }
 void CUser::SetDCCBindHost(const CString& s) { m_sDCCBindHost = s; }

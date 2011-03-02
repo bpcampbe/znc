@@ -136,9 +136,9 @@ public:
 	void AddBytesWritten(unsigned long long u) { m_uBytesWritten += u; }
 
 	// Setters
-	void SetNick(const CString& s);
-	void SetAltNick(const CString& s);
-	void SetIdent(const CString& s);
+	bool SetNick(const CString& s, bool bTakeToken = true);
+	bool SetAltNick(const CString& s, bool bTakeToken = true);
+	bool SetIdent(const CString& s, bool bTakeToken = true);
 	void SetRealName(const CString& s);
 	void SetBindHost(const CString& s);
 	void SetDCCBindHost(const CString& s);
